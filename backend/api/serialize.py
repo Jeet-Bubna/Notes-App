@@ -12,3 +12,9 @@ class UserSerializer(serializers.ModelSerializer):
             user = User.objects.create(**validated_data)
             return user
                                         
+
+class NoteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ["id", "author", "content", "created-at", "title"]
+        extra_kwargs = {"author":{"read_only": True}}
