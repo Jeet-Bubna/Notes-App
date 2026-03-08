@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'api',
     'rest_framework',
     'corsheaders',
+    'rest_framework_simplejwt',
 ]
 
 MIDDLEWARE = [
@@ -67,7 +68,7 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
 ]
 
-ROOT_URLCONF = 'project.urls'
+ROOT_URLCONF = 'backend.urls'
 
 TEMPLATES = [
     {
@@ -84,7 +85,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'project.wsgi.application'
+WSGI_APPLICATION = 'backend.wsgi.application'
 
 
 # Database
