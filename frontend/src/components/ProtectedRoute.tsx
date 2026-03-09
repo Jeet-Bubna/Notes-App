@@ -37,8 +37,9 @@ function ProtectedRoute ({children}:ProtectedRouteProps) {
     const auth = async () => {
 
         const access_token = localStorage.getItem(ACCESS_TOKEN)
-
-        if ( !access_token) {
+        
+        console.log(access_token)
+        if ( access_token == null) {
             setAuthorize(false)
             return
         }
@@ -68,8 +69,8 @@ function ProtectedRoute ({children}:ProtectedRouteProps) {
         
         }
         
-        return isAuthorized ? children : <Navigate to="/login"/>
     }
+    return isAuthorized ? children : <Navigate to="/login"/>
 }
 
 export default ProtectedRoute
