@@ -36,11 +36,13 @@ function ProtectedRoute ({children}:ProtectedRouteProps) {
 
     const auth = async () => {
 
+        console.log("test log to see if this work")
+
         const access_token = localStorage.getItem(ACCESS_TOKEN)
         
-        console.log(access_token)
         if ( access_token == null) {
             setAuthorize(false)
+            console.log("no access token found")
             return
         }
 
@@ -49,7 +51,7 @@ function ProtectedRoute ({children}:ProtectedRouteProps) {
         
         const expiration = decoded.exp
 
-        if (!expiration ){
+        if (expiration === undefined){
             setAuthorize(false)
             console.log("error occured in jwt")
             return
@@ -62,14 +64,15 @@ function ProtectedRoute ({children}:ProtectedRouteProps) {
 
         } else {
             setAuthorize(true)
+            console.log("authorized")
         }
+
+    }
 
         if (isAuthorized === null){
             return <div>Loading...</div>
         
         }
-        
-    }
     return isAuthorized ? children : <Navigate to="/login"/>
 }
 
