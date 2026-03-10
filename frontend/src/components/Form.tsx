@@ -3,6 +3,7 @@ import { useState } from "react"
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants"
 import { Navigate, useNavigate } from "react-router-dom"
 import "../styles/Form.css"
+import LoadingIndicator from "./LoadingIndicator"
 
 interface FormProps {
     route:string;
@@ -12,7 +13,7 @@ function Form({method, route}: FormProps) {
 
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
-    const [, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false)
     const navigate = useNavigate();
 
     const name = method === "register" ? "register" : "login";  
@@ -56,6 +57,8 @@ function Form({method, route}: FormProps) {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
             />
+
+            {loading && <LoadingIndicator />}
 
             <button 
                 className="form-button"
