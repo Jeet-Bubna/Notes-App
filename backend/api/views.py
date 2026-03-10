@@ -11,7 +11,7 @@ class CreateUserView(generics.CreateAPIView):
     serializer_class = UserSerializer
     permission_classes = [AllowAny]
 
-class NoteListCreate(generics.ListAPIView):
+class NoteListCreate(generics.ListCreateAPIView):
     serializer_class = NoteSerializer
     permission_classes = [IsAuthenticated] 
 
@@ -19,7 +19,7 @@ class NoteListCreate(generics.ListAPIView):
         user = self.request.user
         return Note.objects.filter(author=user)
 
-    def create_notes(self, serializer):
+    def perform_create(self, serializer):
         if serializer.is_valid():
             serializer.save(author=self.request.user)
         else:
